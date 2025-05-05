@@ -1,8 +1,6 @@
 # Go Anon Kode
 
-Go Anon Kode 是一个基于终端的 AI 编码工具，可以使用任何支持 OpenAI 风格 API 的模型。这是对原始 [anon-kode](https://github.com/dnakov/anon-kode) 项目的 Golang 重新实现，并增加了 Web 界面。
-
-## 功能特点
+aigo kode 是一个基于终端的 AI 编码工具，可以使用任何支持 OpenAI 风格 API 的模型。
 
 - 修复代码问题
 - 解释函数功能
@@ -21,21 +19,12 @@ Go Anon Kode 是一个基于终端的 AI 编码工具，可以使用任何支持
 
 ```bash
 # 克隆仓库
-git clone https://github.com/user/go-anon-kode.git
-cd go-anon-kode
+git clone https://github.com/cinience/aigo-kode.git
+cd aigo-kode
 
 # 构建 CLI 应用
 cd cmd/cli
-go build -o ../../bin/go-anon-kode-cli
-
-# 构建服务器应用
-cd ../server
-go build -o ../../bin/go-anon-kode-server
-
-# 构建 Web 前端
-cd ../../web
-npm install
-npm run build
+go build -o ../../bin/aigo-kode-cli
 ```
 
 ## 使用方法
@@ -44,22 +33,10 @@ npm run build
 
 ```bash
 # 启动交互式终端
-./bin/go-anon-kode-cli
+./bin/aigo-kode-cli
 
-# 直接执行命令
-./bin/go-anon-kode-cli file-read /path/to/file.txt
-./bin/go-anon-kode-cli bash "ls -la"
 ```
 
-### Web 模式
-
-```bash
-# 启动 Web 服务器
-./bin/go-anon-kode-server
-
-# 然后在浏览器中访问
-# http://localhost:8080
-```
 
 ## 配置
 
@@ -67,7 +44,15 @@ npm run build
 
 配置文件存储在：
 - 全局配置：`~/.aigo-kode/config.json`
-- 项目配置：`<project-dir>/.aigo-kode.json`
+```json
+{
+    "defaultModel":"qwen-max",
+    "baseURL":"https://dashscope.aliyuncs.com/compatible-mode/v1",
+    "apiKeys": {
+        "openai":"sk-example"
+    }
+}
+```
 
 ## 主要功能
 
@@ -115,10 +100,6 @@ go test ./...
 ### 添加新工具
 
 要添加新工具，需要实现 `core.Tool` 接口并将其注册到 `tools.ToolRegistry`。
-
-## 许可证
-
-与原始 anon-kode 项目相同的许可证。
 
 ## 致谢
 
