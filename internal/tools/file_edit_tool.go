@@ -129,6 +129,23 @@ func (t *FileEditTool) ValidateInput(input map[string]interface{}) error {
 	return nil
 }
 
+func (t *FileEditTool) Arguments() string {
+	return `{
+		"file_path": {
+			"type": "string",
+			"description": "The path to the file to edit"
+		},
+		"old_text": {
+			"type": "string",
+			"description": "The text to replace"
+		},
+		"new_text": {
+			"type": "string",
+			"description": "The new text to replace with"
+		}
+	}`
+}
+
 // IsReadOnly returns whether the tool is read-only
 func (t *FileEditTool) IsReadOnly() bool {
 	return false

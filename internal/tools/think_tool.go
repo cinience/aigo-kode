@@ -60,6 +60,15 @@ func (t *ThinkTool) ValidateInput(input map[string]interface{}) error {
 	return nil
 }
 
+func (t *ThinkTool) Arguments() string {
+	return `{
+		"prompt": {
+			"type": "string",
+			"description": "The prompt to think through"
+		}
+	}`
+}
+
 // IsReadOnly returns whether the tool is read-only
 func (t *ThinkTool) IsReadOnly() bool {
 	return true

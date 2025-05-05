@@ -35,7 +35,7 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	switch msg := msg.(type) {
 	case tea.KeyMsg:
 		switch msg.String() {
-		case "ctrl+c", "q":
+		case "ctrl+c", "quit":
 			return m, tea.Quit
 		case "enter":
 			if m.input == "" {
@@ -75,6 +75,8 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		// Handle response
 		if len(resp.ToolCalls) > 0 {
 			// Tool calls
+			m.session.AddAssistantMessage(resp.Content, resp.ToolCalls)
+
 			for _, toolCall := range resp.ToolCalls {
 				m.currentTool = toolCall.ToolName
 				m.messages = append(m.messages, fmt.Sprintf("AI wants to use tool: %s", toolCall.ToolName))
@@ -102,7 +104,7 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		}
 
 		// Add assistant message
-		m.session.AddAssistantMessage(resp.Content)
+		//m.session.AddAssistantMessage(resp.Content)
 		m.messages = append(m.messages, fmt.Sprintf("AI: %s", resp.Content))
 		m.currentTool = ""
 
@@ -115,7 +117,7 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 // View renders the UI
 func (m Model) View() string {
 	// Simple terminal UI
-	view := "Go Anon Kode - Terminal AI Assistant\n\n"
+	view := "Go AIGo Kode - Terminal AI Assistant\n\n"
 
 	// Show messages
 	for _, msg := range m.messages {
@@ -148,7 +150,7 @@ func main() {
 		log.Fatalf("Failed to get home directory: %v", err)
 	}
 
-	configDir := filepath.Join(homeDir, ".go-anon-kode")
+	configDir := filepath.Join(homeDir, ".aigo-kode")
 	cfg, err := config.NewFileConfig(configDir)
 	if err != nil {
 		log.Fatalf("Failed to create config: %v", err)
@@ -160,6 +162,8 @@ func main() {
 		log.Fatalf("Failed to get global config: %v", err)
 	}
 
+	log.Println(globalConfig)
+
 	// Set up OpenAI model
 	apiKey := os.Getenv("OPENAI_API_KEY")
 	if apiKey == "" {
@@ -170,7 +174,7 @@ func main() {
 		}
 	}
 
-	model, err := ai.NewOpenAIModel(apiKey, globalConfig.DefaultModel)
+	model, err := ai.NewOpenAIModel(apiKey, globalConfig.DefaultModel, globalConfig.BaseURL)
 	if err != nil {
 		log.Fatalf("Failed to create OpenAI model: %v", err)
 	}

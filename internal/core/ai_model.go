@@ -10,6 +10,9 @@ type Message struct {
 	Role string
 	// Content can be a string or structured content
 	Content interface{}
+
+	// ToolCalls contains any tool calls in the response
+	ToolCalls []ToolCall
 }
 
 // ToolCall represents a request from the AI to use a tool

@@ -140,6 +140,23 @@ func (t *FileReadTool) ValidateInput(input map[string]interface{}) error {
 	return nil
 }
 
+func (t *FileReadTool) Arguments() string {
+	return `{
+		"file_path": {
+			"type": "string",
+			"description": "The path to the file to read"
+		},
+		"offset": {
+			"type": "integer",
+			"description": "The line number to start reading from"
+		},
+		"limit": {
+			"type": "integer",
+			"description": "The number of lines to read"
+		}
+	}`
+}
+
 // IsReadOnly returns whether the tool is read-only
 func (t *FileReadTool) IsReadOnly() bool {
 	return true

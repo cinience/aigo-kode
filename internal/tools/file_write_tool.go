@@ -156,6 +156,32 @@ func (t *FileWriteTool) ValidateInput(input map[string]interface{}) error {
 	return nil
 }
 
+func (t *FileWriteTool) Arguments() string {
+	return `{
+		"file_path": {
+			"type": "string",
+			"description": "The path of the file to write to"
+		},
+		"content": {
+			"type": "string",
+			"description": "The content to write to the file"
+		},
+		"append": {
+			"type": "boolean",
+			"description": "Whether to append to the file or overwrite it (default: false)"
+		},
+		"leading_newline": {
+			"type": "boolean",
+			"description": "Whether to add a leading newline to the content"
+		},
+		"trailing_newline": {
+			"type": "boolean",
+			"description": "Whether to add a trailing newline to the content (default: true)"
+		}
+	}`
+}
+
+
 // IsReadOnly returns whether the tool is read-only
 func (t *FileWriteTool) IsReadOnly() bool {
 	return false

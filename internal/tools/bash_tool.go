@@ -44,7 +44,7 @@ func (t *BashTool) Execute(ctx context.Context, input map[string]interface{}) (i
 
 	// Extract timeout
 	timeout := 30 * time.Second
-	if timeoutVal, ok := input["timeout"].(int); ok && timeoutVal > 0 {
+	if timeoutVal, ok := input["timeout"].(float64); ok && timeoutVal > 0 {
 		timeout = time.Duration(timeoutVal) * time.Second
 	}
 
@@ -144,7 +144,7 @@ func (t *BashTool) ValidateInput(input map[string]interface{}) error {
 
 	// Validate timeout if present
 	if timeoutVal, ok := input["timeout"]; ok {
-		timeout, ok := timeoutVal.(int)
+		timeout, ok := timeoutVal.(float64)
 		if !ok {
 			return errors.New("timeout must be an integer")
 		}
@@ -159,6 +159,19 @@ func (t *BashTool) ValidateInput(input map[string]interface{}) error {
 	}
 
 	return nil
+}
+
+func (t *BashTool) Arguments() string {
+	return `{
+		"command": {
+			"type": "string",
+			"description": "The bash command to execute"
+		},
+		"timeout": {
+			"type": "integer",
+			"description": "The maximum time in seconds to allow the command to run"
+		}
+	}`
 }
 
 // IsReadOnly returns whether the tool is read-only

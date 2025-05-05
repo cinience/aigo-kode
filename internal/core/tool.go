@@ -13,6 +13,8 @@ type Tool interface {
 	// Description returns the tool description
 	Description() string
 
+	Arguments() string
+
 	// Execute executes the tool and returns the result
 	Execute(ctx context.Context, input map[string]interface{}) (interface{}, error)
 

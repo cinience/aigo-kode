@@ -13,6 +13,8 @@ type GlobalConfig struct {
 	DefaultModel string `json:"defaultModel"`
 	// APIKeys maps provider names to API keys
 	APIKeys map[string]string `json:"apiKeys"`
+	// BaseURL is the base URL for the API
+	BaseURL string `json:"baseURL"`
 	// HasCompletedOnboarding indicates if the user has completed onboarding
 	HasCompletedOnboarding bool `json:"hasCompletedOnboarding"`
 	// LastOnboardingVersion is the version when onboarding was last completed
@@ -92,7 +94,7 @@ func (c *FileConfig) GetProjectConfig(projectPath string) (*ProjectConfig, error
 		return nil, errors.New("project path cannot be empty")
 	}
 
-	configPath := filepath.Join(projectPath, ".go-anon-kode.json")
+	configPath := filepath.Join(projectPath, ".aigo-kode.json")
 
 	// Check if file exists
 	if _, err := os.Stat(configPath); os.IsNotExist(err) {
@@ -151,6 +153,6 @@ func (c *FileConfig) SaveProjectConfig(projectPath string, config *ProjectConfig
 	}
 
 	// Write to file
-	configPath := filepath.Join(projectPath, ".go-anon-kode.json")
+	configPath := filepath.Join(projectPath, ".aigo-kode.json")
 	return os.WriteFile(configPath, data, 0644)
 }

@@ -116,6 +116,19 @@ func (t *GlobTool) ValidateInput(input map[string]interface{}) error {
 	return nil
 }
 
+func (t *GlobTool) Arguments() string {
+	return `{
+		"pattern": {
+			"type": "string",
+			"description": "The pattern to match files against"
+		},
+		"base_dir": {
+			"type": "string",
+			"description": "The base directory to search in (optional)"
+		}
+		`
+}
+
 // IsReadOnly returns whether the tool is read-only
 func (t *GlobTool) IsReadOnly() bool {
 	return true

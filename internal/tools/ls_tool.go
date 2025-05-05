@@ -184,6 +184,23 @@ func (t *LSTool) ValidateInput(input map[string]interface{}) error {
 	return nil
 }
 
+func (t *LSTool) Arguments() string {
+	return `{
+		"path": {
+			"type": "string",
+			"description": "The path to the directory to list (optional)"
+		},
+		"show_hidden": {
+			"type": "boolean",
+			"description": "Whether to show hidden files and directories (optional)"
+		},
+		"sort_by": {
+			"type": "string",
+			"description": "The field to sort by (optional): name, size, type"
+		}
+		`
+}
+
 // IsReadOnly returns whether the tool is read-only
 func (t *LSTool) IsReadOnly() bool {
 	return true

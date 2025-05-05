@@ -21,7 +21,7 @@ func TestOpenAIModel(t *testing.T) {
 	t.Skip("Skipping OpenAI API test as it requires an API key")
 
 	// This is a basic structure test, not an actual API call test
-	model, err := NewOpenAIModel("test-api-key", "gpt-3.5-turbo")
+	model, err := NewOpenAIModel("test-api-key", "gpt-3.5-turbo", "")
 	assert.NoError(t, err)
 	assert.NotNil(t, model)
 
@@ -30,7 +30,7 @@ func TestOpenAIModel(t *testing.T) {
 	assert.Equal(t, "OpenAI", model.Provider())
 
 	// Test error case
-	_, err = NewOpenAIModel("", "")
+	_, err = NewOpenAIModel("", "", "")
 	assert.Error(t, err)
 }
 

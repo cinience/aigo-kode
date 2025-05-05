@@ -150,7 +150,7 @@ func (s *Server) handleChat(c *gin.Context) {
 		}
 	}
 
-	model, err := ai.NewOpenAIModel(apiKey, globalConfig.DefaultModel)
+	model, err := ai.NewOpenAIModel(apiKey, globalConfig.DefaultModel, globalConfig.BaseURL)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to create model"})
 		return

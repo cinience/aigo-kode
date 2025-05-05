@@ -177,6 +177,23 @@ func (t *GrepTool) ValidateInput(input map[string]interface{}) error {
 	return nil
 }
 
+func (t *GrepTool) Arguments() string {
+	return `{
+		"pattern": {
+			"type": "string",
+			"description": "The pattern to search for"
+		},
+		"file_paths": {
+			"type": "string or array of strings",
+			"description": "The file paths or patterns to search in"
+		},
+		"max_matches": {
+			"type": "number",
+			"description": "The maximum number of matches to return (optional)"
+		}
+		`
+}
+
 // IsReadOnly returns whether the tool is read-only
 func (t *GrepTool) IsReadOnly() bool {
 	return true

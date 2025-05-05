@@ -3,6 +3,7 @@ package core
 import (
 	"context"
 	"errors"
+	"log"
 )
 
 // Session represents an interactive session with an AI model
@@ -61,10 +62,11 @@ func (s *Session) AddUserMessage(content string) {
 }
 
 // AddAssistantMessage adds an assistant message to the conversation
-func (s *Session) AddAssistantMessage(content string) {
+func (s *Session) AddAssistantMessage(content string, call []ToolCall) {
 	s.Messages = append(s.Messages, Message{
-		Role:    "assistant",
-		Content: content,
+		Role:      "assistant",
+		Content:   content,
+		ToolCalls: call,
 	})
 }
 
@@ -117,6 +119,7 @@ func (s *Session) ExecuteTool(ctx context.Context, toolCall ToolCall) (*ToolUseR
 		// For now, we'll just allow it
 	}
 
+	log.Println(toolCall.Input)
 	// Validate input
 	if err := tool.ValidateInput(toolCall.Input); err != nil {
 		return &ToolUseResult{

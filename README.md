@@ -66,8 +66,8 @@ npm run build
 首次运行时，应用会引导您完成配置过程。您需要提供 OpenAI API 密钥或其他兼容的 API 密钥。
 
 配置文件存储在：
-- 全局配置：`~/.go-anon-kode/config.json`
-- 项目配置：`<project-dir>/.go-anon-kode.json`
+- 全局配置：`~/.aigo-kode/config.json`
+- 项目配置：`<project-dir>/.aigo-kode.json`
 
 ## 主要功能
 
