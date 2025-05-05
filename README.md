@@ -1,4 +1,4 @@
-# Go Anon Kode
+# aigo kode
 
 aigo kode 是一个基于终端的 AI 编码工具，可以使用任何支持 OpenAI 风格 API 的模型。
 
@@ -103,5 +103,4 @@ go test ./...
 
 ## 致谢
 
-- 原始 [anon-kode](https://github.com/dnakov/anon-kode) 项目
 - 所有使用的开源库和框架

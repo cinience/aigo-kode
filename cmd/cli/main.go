@@ -117,7 +117,7 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 // View renders the UI
 func (m Model) View() string {
 	// Simple terminal UI
-	view := "Go AIGo Kode - Terminal AI Assistant\n\n"
+	view := "aigo kode - Terminal AI Assistant\n\n"
 
 	// Show messages
 	for _, msg := range m.messages {
@@ -195,7 +195,7 @@ func main() {
 		session:      session,
 		toolRegistry: registry,
 		config:       cfg,
-		messages:     []string{"Welcome to Go Anon Kode! Type your question or request."},
+		messages:     []string{"Welcome to aigo kode! Type your question or request."},
 	})
 
 	if _, err := p.Run(); err != nil {
