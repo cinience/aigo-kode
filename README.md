@@ -104,3 +104,4 @@ go test ./...
 ## 致谢
 
 - 所有使用的开源库和框架
+- https://deepwiki.com/dnakov/anon-kode/2-system-architecture
